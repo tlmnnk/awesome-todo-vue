@@ -3,12 +3,19 @@ import mutations from '../mutations';
 const { ADD_TODO, TOGGLE_DONE_TODO, DELETE_TODO } = mutations;
 
 const todoStore = {
+  namespaced: true,
   state: {
     toDoList: [
       {
         id: 1,
         title: 'Learn Vue.js',
-        Done: false,
+        isDone: false,
+        created: '',
+      },
+      {
+        id: 2,
+        title: 'Make a awesome ToDo app',
+        isDone: true,
         created: '',
       },
     ],
@@ -21,7 +28,7 @@ const todoStore = {
       state.toDoList.push(todoItem);
     },
     [TOGGLE_DONE_TODO](state, doneTodoIdx) {
-      state.getDoneToDo[doneTodoIdx].isDone = !state.getDoneToDo[doneTodoIdx].isDone;
+      state.toDoList[doneTodoIdx].isDone = !state.toDoList[doneTodoIdx].isDone;
     },
     [DELETE_TODO](state, todoIdx) {
       state.toDoList.splice(todoIdx, 1);
@@ -32,7 +39,9 @@ const todoStore = {
       commit('ADD_TODO', todoItem);
     },
     getDoneToDo({ state, commit }, id) {
+      console.log(id);
       const doneTodoIdx = state.toDoList.findIndex((item) => item.id === id);
+      console.log('doneTodoIdx', doneTodoIdx);
       commit('TOGGLE_DONE_TODO', doneTodoIdx);
     },
     deleteToDo({ commit, state }, id) {
