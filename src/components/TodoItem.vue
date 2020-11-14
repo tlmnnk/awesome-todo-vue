@@ -1,6 +1,6 @@
 <template>
   <div class="todo-item">
-    <el-card class="box-card">
+    <el-card class="box-card" shadow="hover">
         <el-checkbox
           v-model="isChecked"
           class="todo-item__checkbox"
