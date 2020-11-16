@@ -39,9 +39,7 @@ const todoStore = {
       commit('ADD_TODO', todoItem);
     },
     getDoneToDo({ state, commit }, id) {
-      console.log(id);
       const doneTodoIdx = state.toDoList.findIndex((item) => item.id === id);
-      console.log('doneTodoIdx', doneTodoIdx);
       commit('TOGGLE_DONE_TODO', doneTodoIdx);
     },
     deleteToDo({ commit, state }, id) {
