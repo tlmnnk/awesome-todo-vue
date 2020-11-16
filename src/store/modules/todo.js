@@ -14,7 +14,7 @@ const todoStore = {
       },
       {
         id: 2,
-        title: 'Make a awesome ToDo app',
+        title: 'Make an Awesome ToDo app',
         isDone: true,
         created: '',
       },
