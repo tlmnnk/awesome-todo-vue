@@ -1,11 +1,13 @@
 <template>
   <div class="add-todo">
-    <el-form ref="todoForm" v-model="todoForm" @submit.native.prevent="onSubmitTodo">
+    <el-form ref="todoForm" :model="formData" @submit.native.prevent="onSubmitTodo" :rules="rules">
       <el-card  class="box-card">
-        <el-input
-          placeholder="Whats poppin?..."
-          v-model="todoForm.inputTodo"
-          ref="addTodoItem"></el-input>
+        <el-form-item prop="todoValue" class="add-todo__form-item">
+          <el-input
+            placeholder="Whats poppin?..."
+            v-model="formData.todoValue"
+            ref="addTodoItem"/>
+        </el-form-item>
         <el-button
           class="add-todo__btn"
           type="primary"
@@ -23,21 +25,33 @@ import { mapActions } from 'vuex';
 export default {
   name: 'AddTodo',
   data: () => ({
-    todoForm: {
-      inputTodo: '',
+    formData: {
+      todoValue: '',
+    },
+    rules: {
+      todoValue: [
+        { required: true, message: 'Please input ToDo name', trigger: 'blur' },
+        {
+          min: 3, max: 99, message: 'Length should be 3 to 99', trigger: 'blur',
+        },
+      ],
     },
   }),
   methods: {
     ...mapActions('todo', ['addToDo']),
     onSubmitTodo() {
-      const newTodo = {
-        id: uuidv4(),
-        title: this.todoForm.inputTodo,
-        isDone: false,
-        created: '',
-      };
-      this.todoForm.inputTodo = '';
-      this.addToDo(newTodo);
+      this.$refs.todoForm.validate((isValid) => {
+        if (isValid) {
+          const newTodo = {
+            id: uuidv4(),
+            title: this.formData.todoValue,
+            isDone: false,
+            created: '',
+          };
+          this.$refs.todoForm.resetFields();
+          this.addToDo(newTodo);
+        }
+      });
     },
   },
 };
@@ -48,7 +62,14 @@ export default {
   width: 100%;
   margin-bottom: 25px;
 }
+.add-todo__form-item {
+  width: 100%;
+}
 .add-todo .add-todo__btn {
+  height: 45px;
   margin-left: 15px;
+}
+.add-todo .el-form-item {
+  margin-bottom: 0;
 }
 </style>
