@@ -14,7 +14,6 @@ const filterStore = {
   },
   mutations: {
     [SET_FILTER](state, filter) {
-      console.log('mutati', filter);
       state.filter = filter;
     },
   },
