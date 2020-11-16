@@ -1,6 +1,10 @@
 <template>
   <div class="add-todo">
-    <el-form ref="todoForm" :model="formData" @submit.native.prevent="onSubmitTodo" :rules="rules">
+    <el-form
+      ref="todoForm"
+      :model="formData"
+      @submit.native.prevent="onSubmitTodo"
+      :rules="rules">
       <el-card  class="box-card">
         <el-form-item prop="todoValue" class="add-todo__form-item">
           <el-input
@@ -30,9 +34,8 @@ export default {
     },
     rules: {
       todoValue: [
-        { required: true, message: 'Please input ToDo name', trigger: 'blur' },
         {
-          min: 3, max: 99, message: 'Length should be 3 to 99', trigger: 'blur',
+          min: 3, max: 99, message: 'Length should be 3 to 99', trigger: 'change', required: true,
         },
       ],
     },
@@ -60,7 +63,7 @@ export default {
 <style>
 .add-todo {
   width: 100%;
-  margin-bottom: 25px;
+  margin-bottom: 12px;
 }
 .add-todo__form-item {
   width: 100%;

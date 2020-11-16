@@ -1,20 +1,22 @@
 <template>
-  <div class="todo-item">
-    <el-card class="box-card" shadow="hover">
-        <el-checkbox
-          v-model="isChecked"
-          class="todo-item__checkbox"
-          @change="onCheckboxChange(todoItem.id)">
-          {{ todoItem.title }}
-        </el-checkbox>
-    <el-button
-      class="todo-item__btn"
-      type="danger"
-      icon="el-icon-delete"
-      @click="deleteTodo(todoItem.id)"
-      circle />
-</el-card>
-  </div>
+ <transition appear>
+    <div class="todo-item transition-box">
+      <el-card class="box-card" shadow="hover">
+          <el-checkbox
+            v-model="isChecked"
+            class="todo-item__checkbox"
+            @change="onCheckboxChange(todoItem.id)">
+            {{ todoItem.title }}
+          </el-checkbox>
+      <el-button
+        class="todo-item__btn"
+        type="danger"
+        icon="el-icon-delete"
+        @click="deleteTodo(todoItem.id)"
+        circle />
+      </el-card>
+    </div>
+   </transition>
 </template>
 
 <script>

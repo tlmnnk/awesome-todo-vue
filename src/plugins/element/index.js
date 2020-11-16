@@ -3,7 +3,7 @@ import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
 import 'element-ui/lib/theme-chalk/index.css';
 import {
-  Checkbox, Button, Card, Input, Form, FormItem,
+  Checkbox, Button, Card, Input, Form, FormItem, RadioGroup, RadioButton,
 }
   from 'element-ui';
 
@@ -15,3 +15,5 @@ Vue.use(Card, { locale });
 Vue.use(Form, { locale });
 Vue.use(Input, { locale });
 Vue.use(FormItem, { locale });
+Vue.use(RadioGroup, { locale });
+Vue.use(RadioButton, { locale });

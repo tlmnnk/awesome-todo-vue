@@ -4,20 +4,23 @@
     <hr size="3" color="#f7f7f7" width="100%">
     <div class="todo__wrapper">
       <AddTodo />
+      <FilterTodo />
       <TodoList />
     </div>
   </div>
 </template>
 
 <script>
-import TodoList from './components/TodoList.vue';
 import AddTodo from './components/AddTodo.vue';
+import FilterTodo from './components/FilterTodo.vue';
+import TodoList from './components/TodoList.vue';
 
 export default {
   name: 'App',
   components: {
     TodoList,
     AddTodo,
+    FilterTodo,
   },
 };
 </script>

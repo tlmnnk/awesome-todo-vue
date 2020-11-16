@@ -1,7 +1,7 @@
 <template>
   <div class="todo-list">
     <TodoItem
-      v-for="item in toDoList"
+      v-for="item in filteredTodos"
       :key="item.id"
       :todoItem="item"
       @onCheckboxChange="onCheckboxChange"
@@ -12,6 +12,9 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import TodoItem from './TodoItem.vue';
+import constants from '../constants';
+
+const { ALL, ACTIVE, DONE } = constants.FILTER;
 
 export default {
   name: 'TodoList',
@@ -29,6 +32,20 @@ export default {
   },
   computed: {
     ...mapGetters('todo', ['toDoList']),
+    ...mapGetters('filter', ['getFilter']),
+    filteredTodos() {
+      console.log();
+      switch (this.getFilter) {
+        case ALL:
+          return this.toDoList;
+        case ACTIVE:
+          return this.toDoList.filter((item) => item.isDone === false);
+        case DONE:
+          return this.toDoList.filter((item) => item.isDone === true);
+        default:
+          return this.toDoList;
+      }
+    },
   },
 };
 </script>
