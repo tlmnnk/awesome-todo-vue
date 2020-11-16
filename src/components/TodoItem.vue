@@ -7,7 +7,12 @@
           @change="onCheckboxChange(todoItem.id)">
           {{ todoItem.title }}
         </el-checkbox>
-    <el-button class="todo-item__btn" type="danger" icon="el-icon-delete" circle></el-button>
+    <el-button
+      class="todo-item__btn"
+      type="danger"
+      icon="el-icon-delete"
+      @click="deleteTodo(todoItem.id)"
+      circle />
 </el-card>
   </div>
 </template>
@@ -27,6 +32,9 @@ export default {
   methods: {
     onCheckboxChange(id) {
       this.$emit('onCheckboxChange', id);
+    },
+    deleteTodo(id) {
+      this.$emit('onDeleteTodo', id);
     },
   },
   computed: {
@@ -48,7 +56,8 @@ export default {
 }
 .box-card .el-card__body {
   display: flex;
-    justify-content: space-between;
+  justify-content: space-between;
+  align-items: center;
 }
 .todo-item__checkbox .el-checkbox__label {
   font-size: 22px;

@@ -4,7 +4,8 @@
       v-for="item in toDoList"
       :key="item.id"
       :todoItem="item"
-      @onCheckboxChange="onCheckboxChange"/>
+      @onCheckboxChange="onCheckboxChange"
+      @onDeleteTodo="onDeleteTodo"/>
   </div>
 </template>
 
@@ -18,9 +19,12 @@ export default {
     TodoItem,
   },
   methods: {
-    ...mapActions('todo', ['getDoneToDo']),
+    ...mapActions('todo', ['getDoneToDo', 'deleteToDo']),
     onCheckboxChange(id) {
       this.getDoneToDo(id);
+    },
+    onDeleteTodo(id) {
+      this.deleteToDo(id);
     },
   },
   computed: {
