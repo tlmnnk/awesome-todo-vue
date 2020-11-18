@@ -1,5 +1,7 @@
 # my-first-todo-vue
 
+`<deploy>` : <https://flamboyant-panini-b249ec.netlify.app/>
+
 ## Project setup
 ```
 npm install
